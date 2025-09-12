@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rounding Practice</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .streak-counter {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 30px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .streak-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .streak-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .question-area {
+            margin-bottom: 30px;
+        }
+
+        .question {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        .number-highlight {
+            background: rgba(255, 255, 255, 0.3);
+            padding: 5px 10px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .input-area {
+            margin-bottom: 30px;
+        }
+
+        .answer-input {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.2rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .answer-input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .answer-input:focus {
+            outline: none;
+            border-color: rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .feedback {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .feedback.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .feedback.correct {
+            background: rgba(76, 217, 100, 0.3);
+            border: 2px solid #4cd964;
+        }
+
+        .feedback.incorrect {
+            background: rgba(255, 107, 107, 0.3);
+            border: 2px solid #ff6b6b;
+        }
+
+        .next-btn {
+            margin-top: 15px;
+            padding: 12px 25px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .next-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Success Animations */
+        @keyframes celebrate {
+            0% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.1) rotate(5deg); }
+            50% { transform: scale(1.2) rotate(-5deg); }
+            75% { transform: scale(1.1) rotate(3deg); }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes rainbow {
+            0% { border-color: #ff6b6b; }
+            16% { border-color: #ffa726; }
+            33% { border-color: #ffee58; }
+            50% { border-color: #66bb6a; }
+            66% { border-color: #42a5f5; }
+            83% { border-color: #ab47bc; }
+            100% { border-color: #ff6b6b; }
+        }
+
+        @keyframes fireworks {
+            0% { 
+                transform: scale(1);
+                box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+            }
+            50% { 
+                transform: scale(1.1);
+                box-shadow: 
+                    0 0 40px rgba(255, 107, 107, 0.8),
+                    0 0 60px rgba(255, 193, 7, 0.8),
+                    0 0 80px rgba(76, 217, 100, 0.8);
+            }
+            100% { 
+                transform: scale(1);
+                box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+            }
+        }
+
+        .celebrate {
+            animation: celebrate 0.6s ease-in-out;
+        }
+
+        .milestone {
+            animation: fireworks 1s ease-in-out;
+        }
+
+        .streak-pulse {
+            animation: pulse 0.5s ease-in-out;
+        }
+
+        .rainbow-border {
+            animation: rainbow 2s linear infinite;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="streak-counter" id="streakCounter">
+            <div class="streak-number" id="streakNumber">0</div>
+            <div class="streak-label">Streak</div>
+        </div>
+
+        <div class="question-area">
+            <div class="question" id="question">
+                Round <span class="number-highlight" id="numberToRound">123</span> to the nearest <span id="roundingTarget">ten</span>
+            </div>
+        </div>
+
+        <div class="input-area">
+            <input type="number" class="answer-input" id="answerInput" placeholder="Your answer">
+            <button class="submit-btn" id="submitBtn" onclick="checkAnswer()">Submit Answer</button>
+        </div>
+
+        <div class="feedback" id="feedback">
+            <div id="feedbackText"></div>
+            <button class="next-btn hidden" id="nextBtn" onclick="nextQuestion()">Next Question</button>
+        </div>
+    </div>
+
+    <script>
+        let currentStreak = 0;
+        let currentQuestion = {};
+        let answerSubmitted = false;
+
+        function generateQuestion() {
+            const roundingTargets = [
+                { value: 10, text: "ten" },
+                { value: 100, text: "hundred" },
+                { value: 1000, text: "thousand" }
+            ];
+            
+            const target = roundingTargets[Math.floor(Math.random() * roundingTargets.length)];
+            
+            let numberToRound;
+            if (target.value === 10) {
+                numberToRound = Math.floor(Math.random() * 9999) + 1;
+            } else if (target.value === 100) {
+                numberToRound = Math.floor(Math.random() * 99999) + 1;
+            } else {
+                numberToRound = Math.floor(Math.random() * 999999) + 1;
+            }
+
+            const correctAnswer = Math.round(numberToRound / target.value) * target.value;
+
+            currentQuestion = {
+                number: numberToRound,
+                target: target,
+                correctAnswer: correctAnswer
+            };
+
+            document.getElementById('numberToRound').textContent = numberToRound;
+            document.getElementById('roundingTarget').textContent = target.text;
+            document.getElementById('answerInput').value = '';
+            document.getElementById('answerInput').focus();
+            
+            answerSubmitted = false;
+            hideFeedback();
+        }
+
+        function checkAnswer() {
+            if (answerSubmitted) {
+                return;
+            }
+
+            const userAnswer = parseInt(document.getElementById('answerInput').value);
+            const feedbackEl = document.getElementById('feedback');
+            const feedbackText = document.getElementById('feedbackText');
+            const nextBtn = document.getElementById('nextBtn');
+            const submitBtn = document.getElementById('submitBtn');
+
+            if (isNaN(userAnswer)) {
+                alert('Please enter a valid number');
+                return;
+            }
+
+            answerSubmitted = true;
+            submitBtn.disabled = true;
+
+            if (userAnswer === currentQuestion.correctAnswer) {
+                currentStreak++;
+                updateStreakDisplay();
+                
+                feedbackEl.className = 'feedback correct show';
+                feedbackText.textContent = '🎉 Correct!';
+                
+                celebrateSuccess();
+            } else {
+                currentStreak = 0;
+                updateStreakDisplay();
+                
+                feedbackEl.className = 'feedback incorrect show';
+                feedbackText.innerHTML = `❌ Incorrect<br>The correct answer is: ${currentQuestion.correctAnswer}`;
+            }
+
+            nextBtn.classList.remove('hidden');
+        }
+
+        function updateStreakDisplay() {
+            const streakNumber = document.getElementById('streakNumber');
+            const streakCounter = document.getElementById('streakCounter');
+            
+            streakNumber.textContent = currentStreak;
+            streakCounter.classList.add('streak-pulse');
+            
+            setTimeout(() => {
+                streakCounter.classList.remove('streak-pulse');
+            }, 500);
+        }
+
+        function celebrateSuccess() {
+            const container = document.querySelector('.container');
+            const streakCounter = document.getElementById('streakCounter');
+            
+            container.classList.add('celebrate');
+            
+            setTimeout(() => {
+                container.classList.remove('celebrate');
+            }, 600);
+
+            if (currentStreak === 5) {
+                showMilestoneMessage("🔥 5 in a row! You're on fire!");
+            } else if (currentStreak === 10) {
+                showMilestoneMessage("🌟 10 streak! Amazing!");
+                streakCounter.classList.add('rainbow-border');
+                setTimeout(() => streakCounter.classList.remove('rainbow-border'), 3000);
+            } else if (currentStreak === 20) {
+                showMilestoneMessage("🚀 20 streak! Unstoppable!");
+                container.classList.add('milestone');
+                setTimeout(() => container.classList.remove('milestone'), 1000);
+            } else if (currentStreak > 0 && currentStreak % 25 === 0) {
+                showMilestoneMessage(`💎 ${currentStreak} streak! Legendary!`);
+                container.classList.add('milestone');
+                streakCounter.classList.add('rainbow-border');
+                setTimeout(() => {
+                    container.classList.remove('milestone');
+                    streakCounter.classList.remove('rainbow-border');
+                }, 3000);
+            }
+        }
+
+        function showMilestoneMessage(message) {
+            const milestone = document.createElement('div');
+            milestone.style.cssText = `
+                position: fixed;
+                top: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: linear-gradient(45deg, #ff6b6b, #ffa726, #ffee58, #66bb6a, #42a5f5, #ab47bc);
+                background-size: 400% 400%;
+                animation: rainbow 1s linear infinite;
+                color: white;
+                padding: 15px 25px;
+                border-radius: 25px;
+                font-size: 1.2rem;
+                font-weight: bold;
+                z-index: 1000;
+                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+                text-align: center;
+            `;
+            milestone.textContent = message;
+            
+            document.body.appendChild(milestone);
+            
+            setTimeout(() => {
+                milestone.style.opacity = '0';
+                milestone.style.transform = 'translateX(-50%) translateY(-20px)';
+                milestone.style.transition = 'all 0.5s ease';
+                
+                setTimeout(() => {
+                    document.body.removeChild(milestone);
+                }, 500);
+            }, 2500);
+        }
+
+        function nextQuestion() {
+            generateQuestion();
+            document.getElementById('submitBtn').disabled = false;
+        }
+
+        function hideFeedback() {
+            const feedbackEl = document.getElementById('feedback');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            feedbackEl.className = 'feedback';
+            nextBtn.classList.add('hidden');
+        }
+
+        document.getElementById('answerInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                if (answerSubmitted) {
+                    const nextBtn = document.getElementById('nextBtn');
+                    if (!nextBtn.classList.contains('hidden')) {
+                        nextQuestion();
+                    }
+                } else {
+                    checkAnswer();
+                }
+            }
+        });
+
+        generateQuestion();
+    </script>
+</body>
+</html>
