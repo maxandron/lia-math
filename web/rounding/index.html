@@ -15,32 +15,59 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
+            min-height: 100dvh; /* Dynamic viewport height for modern browsers */
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            padding: 20px;
+            padding: 15px 20px;
+            overflow-x: hidden;
+        }
+
+        /* iOS Safari viewport fix */
+        @supports (-webkit-touch-callout: none) {
+            body {
+                min-height: -webkit-fill-available;
+            }
         }
 
         .container {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             border-radius: 20px;
-            padding: 30px;
+            padding: 25px 20px;
             width: 100%;
             max-width: 400px;
+            max-height: 90vh;
+            max-height: 90dvh;
             text-align: center;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.2);
+            overflow-y: auto;
+        }
+
+        /* Compact layout for very small screens */
+        @media (max-height: 600px) {
+            .container {
+                padding: 15px;
+                border-radius: 15px;
+            }
         }
 
         .streak-counter {
             background: rgba(255, 255, 255, 0.2);
             border-radius: 15px;
-            padding: 15px;
-            margin-bottom: 30px;
+            padding: 12px;
+            margin-bottom: 25px;
             border: 2px solid transparent;
             transition: all 0.3s ease;
+        }
+
+        @media (max-height: 600px) {
+            .streak-counter {
+                padding: 10px;
+                margin-bottom: 15px;
+            }
         }
 
         .streak-number {
@@ -55,7 +82,13 @@
         }
 
         .question-area {
-            margin-bottom: 30px;
+            margin-bottom: 25px;
+        }
+
+        @media (max-height: 600px) {
+            .question-area {
+                margin-bottom: 15px;
+            }
         }
 
         .question {
@@ -72,7 +105,13 @@
         }
 
         .input-area {
-            margin-bottom: 30px;
+            margin-bottom: 25px;
+        }
+
+        @media (max-height: 600px) {
+            .input-area {
+                margin-bottom: 15px;
+            }
         }
 
         .answer-input {
