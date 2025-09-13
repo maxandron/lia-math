@@ -79,6 +79,24 @@
         .streak-label {
             font-size: 1rem;
             opacity: 0.9;
+            margin-bottom: 15px;
+        }
+
+        .high-score {
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            padding-top: 15px;
+        }
+
+        .high-score-number {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #ffd700;
+        }
+
+        .high-score-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
         }
 
         .question-area {
@@ -276,7 +294,11 @@
     <div class="container">
         <div class="streak-counter" id="streakCounter">
             <div class="streak-number" id="streakNumber">0</div>
-            <div class="streak-label">Streak</div>
+            <div class="streak-label">Current Streak</div>
+            <div class="high-score" id="highScoreDisplay">
+                <div class="high-score-number" id="highScoreNumber">0</div>
+                <div class="high-score-label">High Score</div>
+            </div>
         </div>
 
         <div class="question-area">
@@ -298,6 +320,7 @@
 
     <script>
         let currentStreak = 0;
+        let highScore = parseInt(localStorage.getItem('roundingHighScore')) || 0;
         let currentQuestion = {};
         let answerSubmitted = false;
 
@@ -357,6 +380,18 @@
 
             if (userAnswer === currentQuestion.correctAnswer) {
                 currentStreak++;
+                
+            if (currentStreak > highScore) {
+                const oldHighScore = highScore;
+                highScore = currentStreak;
+                localStorage.setItem('roundingHighScore', highScore.toString());
+                updateHighScoreDisplay();
+                
+                if (oldHighScore > 0) {
+                    showHighScoreMessage(`🏆 New High Score: ${highScore}!`);
+                }
+            }
+                
                 updateStreakDisplay();
                 
                 feedbackEl.className = 'feedback correct show';
@@ -384,6 +419,23 @@
             setTimeout(() => {
                 streakCounter.classList.remove('streak-pulse');
             }, 500);
+        }
+
+        function updateHighScoreDisplay() {
+            const highScoreNumber = document.getElementById('highScoreNumber');
+            const highScoreDisplay = document.getElementById('highScoreDisplay');
+            
+            highScoreNumber.textContent = highScore;
+            highScoreDisplay.classList.add('streak-pulse');
+            
+            setTimeout(() => {
+                highScoreDisplay.classList.remove('streak-pulse');
+            }, 500);
+        }
+
+        function initializeDisplay() {
+            updateStreakDisplay();
+            updateHighScoreDisplay();
         }
 
         function celebrateSuccess() {
@@ -451,8 +503,42 @@
             }, 2500);
         }
 
+        function showHighScoreMessage(message) {
+            const highScoreMessage = document.createElement('div');
+            highScoreMessage.style.cssText = `
+                position: fixed;
+                top: 70px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: linear-gradient(45deg, #ffd700, #ffed4e);
+                color: #333;
+                padding: 15px 25px;
+                border-radius: 25px;
+                font-size: 1.1rem;
+                font-weight: bold;
+                z-index: 1001;
+                box-shadow: 0 5px 20px rgba(255, 215, 0, 0.5);
+                text-align: center;
+                border: 2px solid #ffa500;
+            `;
+            highScoreMessage.textContent = message;
+            
+            document.body.appendChild(highScoreMessage);
+            
+            setTimeout(() => {
+                highScoreMessage.style.opacity = '0';
+                highScoreMessage.style.transform = 'translateX(-50%) translateY(-20px)';
+                highScoreMessage.style.transition = 'all 0.5s ease';
+                
+                setTimeout(() => {
+                    document.body.removeChild(highScoreMessage);
+                }, 500);
+            }, 3000);
+        }
+
         function nextQuestion() {
-            generateQuestion();
+        initializeDisplay();
+        generateQuestion();
             document.getElementById('submitBtn').disabled = false;
         }
 
