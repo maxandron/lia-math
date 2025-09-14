@@ -56,3 +56,15 @@ Angles are measured in degrees. Key facts: angles on a straight line = 180°, ar
 8. Find the alternate angle to 67° when parallel lines are cut by a transversal
 9. Two parallel lines cut by a transversal. If one angle is 108°, find the co-interior angle
 10. Find the corresponding angle to 81° when parallel lines are cut by a transversal
+
+### Geometrical Vocabulary and Construction
+1. Identify the type of angle: 45°
+2. Identify the type of angle: 90°
+3. Identify the type of angle: 120°
+4. Identify the type of angle: 180°
+5. Construct a 60° angle using a protractor
+6. Construct a 90° angle using a protractor
+7. Construct an equilateral triangle
+8. Construct a square
+9. Construct a regular hexagon
+10. Construct a perpendicular bisector

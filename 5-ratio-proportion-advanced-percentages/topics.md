@@ -12,6 +12,7 @@
 - Percentage change in real contexts
 - Reverse percentage problems (e.g. "before discount")
 - Simple interest & compound interest basics
+- Money and finance basics (e.g., calculating interest, budgets)
 
 ### 3. Compound Measures
 - Speed = distance ÷ time

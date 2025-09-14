@@ -15,3 +15,5 @@
 - Sample space diagrams
 - Simple frequency trees
 - Tree diagrams for two events
+- Set notation and Venn diagrams (basic)
+- Further probability (conditional, etc.)

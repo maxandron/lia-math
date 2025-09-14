@@ -6,6 +6,7 @@
 - Squares and square roots
 - Cubes and cube roots
 - Simple index laws
+- Surds (basic simplification)
 
 ### 2. Standard Form (intro level for Foundation)
 - Write very big/small numbers in standard form

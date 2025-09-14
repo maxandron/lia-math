@@ -56,3 +56,39 @@ Transformations change the position or size of shapes. Reflection uses mirror li
 8. Enlarge triangle A(0,1), B(2,1), C(1,3) by scale factor 2, center (0,1)
 9. Enlarge point (8,2) by scale factor 1/4, center origin
 10. Enlarge square with vertices (2,0), (4,0), (4,2), (2,2) by scale factor 1/2, center origin
+
+### Similarity and Congruence
+1. Determine if two triangles are congruent: sides 3,4,5 and 5,4,3
+2. Determine if two triangles are similar: angles 30°,60°,90° and 30°,60°,90°
+3. Find the scale factor of similar triangles with sides 2,3,4 and 4,6,8
+4. Determine congruence of triangles with sides 5,12,13 and 13,12,5
+5. Find the scale factor for enlargement from area 4 to area 16
+6. Determine if shapes are congruent by rotation
+7. Determine if shapes are similar by enlargement
+8. Find the scale factor of similar shapes with perimeters 10 and 25
+9. Determine congruence by reflection
+10. Find the scale factor for similar triangles with heights 3 and 6
+
+### Symmetry
+1. How many lines of symmetry does a square have?
+2. How many lines of symmetry does an equilateral triangle have?
+3. How many lines of symmetry does a circle have?
+4. How many lines of symmetry does a rectangle have?
+5. How many lines of symmetry does a regular pentagon have?
+6. How many lines of symmetry does a regular hexagon have?
+7. Does a parallelogram have rotational symmetry?
+8. How many lines of symmetry does an isosceles triangle have?
+9. Does a trapezoid have rotational symmetry?
+10. How many lines of symmetry does a regular octagon have?
+
+### Vectors (Basic)
+1. Represent vector AB where A(1,2), B(3,4)
+2. Find the magnitude of vector (3,4)
+3. Add vectors (2,3) + (1,4)
+4. Subtract vectors (5,2) - (1,3)
+5. Multiply vector (2,3) by scalar 2
+6. Find the position vector of point (4,5)
+7. Add vectors (3,1) + (-1,2)
+8. Find the magnitude of vector (6,8)
+9. Multiply vector (4,2) by scalar -1
+10. Subtract vectors (7,3) - (2,1)

@@ -52,3 +52,15 @@ Advanced percentages involve real-world contexts like sales, taxes, and interest
 8. Find the compound interest on £600 at 2% per year for 2 years
 9. Find the compound interest on £800 at 5% per year for 2 years
 10. Find the compound interest on £1000 at 4% per year for 2 years
+
+### Money and Finance Basics
+1. Calculate the total cost of a £50 item with 20% VAT
+2. Calculate the sale price of a £100 item with 15% discount
+3. Find the original price of an item that costs £80 after a 25% discount
+4. Calculate simple interest on £500 at 5% for 2 years
+5. Calculate compound interest on £1000 at 4% for 3 years
+6. Find the percentage increase from £200 to £240
+7. Find the percentage decrease from £300 to £270
+8. Calculate the tip (10%) on a £50 bill
+9. Find the cost of a £120 item after 8% VAT
+10. Calculate the profit percentage on an item bought for £40 and sold for £50

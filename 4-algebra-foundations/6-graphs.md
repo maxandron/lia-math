@@ -52,3 +52,39 @@ Graphs show relationships between variables using coordinates (x, y). Straight l
 8. Find the y-intercept of y = 6x + 1
 9. Find the gradient of y = 2x - 5
 10. Find the y-intercept of y = -3x - 2
+
+### Graphs in Practical Situations
+1. Draw a distance-time graph for a car traveling at constant speed
+2. Interpret a speed-time graph showing acceleration
+3. Draw a conversion graph for Celsius to Fahrenheit
+4. Interpret a line graph showing population growth
+5. Draw a bar chart for favorite ice cream flavors
+6. Interpret a pie chart showing time allocation
+7. Draw a scatter diagram for height vs weight
+8. Interpret correlation from a scatter diagram
+9. Draw a histogram for test scores
+10. Interpret data from a cumulative frequency curve
+
+### Graphs of Functions
+1. Draw the graph of y = x²
+2. Draw the graph of y = x³
+3. Draw the graph of y = √x
+4. Draw the graph of y = 1/x
+5. Draw the graph of y = sin x
+6. Draw the graph of y = cos x
+7. Draw the graph of y = tan x
+8. Draw the graph of y = e^x
+9. Draw the graph of y = ln x
+10. Draw the graph of y = |x|
+
+### Differentiation and the Gradient Function (Basic)
+1. Find the derivative of y = x²
+2. Find the derivative of y = 3x + 2
+3. Find the derivative of y = x³
+4. Find the derivative of y = 2x² + 5x
+5. Find the gradient of y = x² at x = 2
+6. Find the gradient of y = 3x + 1 at x = 0
+7. Find the derivative of y = 4x³
+8. Find the derivative of y = x⁴
+9. Find the gradient of y = 2x² at x = 3
+10. Find the derivative of y = 5x² - 3x + 1

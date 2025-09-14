@@ -56,3 +56,27 @@ Combined events involve two or more happenings. Sample space diagrams list all p
 8. Two friends take a test: P(pass) = 0.7 and 0.8. What's P(exactly one passes)?
 9. Flip three coins. What's P(exactly two heads)?
 10. Pick two people randomly. P(wearing glasses) = 0.25 each. What's P(neither wears glasses)?
+
+### Set Notation and Venn Diagrams (Basic)
+1. Use set notation to describe the set of even numbers less than 10
+2. Use set notation for the set of prime numbers less than 20
+3. Draw a Venn diagram for sets A = {1,2,3,4} and B = {3,4,5,6}
+4. Find A ∩ B from the Venn diagram in question 3
+5. Find A ∪ B from the Venn diagram in question 3
+6. Use set notation for the universal set of letters in "MATHEMATICS"
+7. Draw a Venn diagram for multiples of 2 and multiples of 3 less than 20
+8. Find the intersection of multiples of 2 and 3 less than 20
+9. Use set notation for the set of vowels in the alphabet
+10. Draw a Venn diagram for factors of 12 and factors of 18
+
+### Further Probability
+1. Calculate the probability of drawing a red card from a standard deck
+2. Find P(A and B) if P(A) = 0.4, P(B) = 0.3, and A and B are independent
+3. Calculate conditional probability P(B|A) if P(A and B) = 0.2, P(A) = 0.5
+4. Find the probability of at least one success in 3 trials with P(success) = 0.2
+5. Calculate the expected number of heads in 10 coin flips
+6. Find P(exactly 2 successes) in 5 trials with P(success) = 0.3
+7. Calculate the probability of mutually exclusive events A or B
+8. Find P(neither A nor B) if P(A) = 0.3, P(B) = 0.4, P(A and B) = 0.1
+9. Calculate the probability using the addition rule for non-mutually exclusive events
+10. Find the probability of dependent events using conditional probability

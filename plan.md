@@ -1,5 +1,7 @@
 # 📚 Complete Progression Plan to GCSE Foundation (England)
 
+**Prerequisites:** Solid foundation in basic arithmetic (addition, subtraction, multiplication, division of whole numbers) is essential before starting this plan.
+
 ## 1. Number Foundations
 
 **Goal:** Build solid arithmetic foundations and number sense.
@@ -62,9 +64,10 @@
 
 ### Steps:
 1. **Powers & Roots**
-   - Squares and square roots
-   - Cubes and cube roots
-   - Simple index laws
+    - Squares and square roots
+    - Cubes and cube roots
+    - Simple index laws
+    - Surds (basic simplification)
 
 2. **Standard Form** (intro level for Foundation)
    - Write very big/small numbers in standard form
@@ -97,14 +100,22 @@
    - Word problems → equations
 
 5. **Inequalities** (Foundation basics)
-   - Solve simple linear inequalities
-   - Show solutions on a number line
+    - Solve simple linear inequalities
+    - Show solutions on a number line
+    - Graphs of inequalities and regions
 
 6. **Graphs**
-   - Plot coordinates (x, y)
-   - Draw straight line graphs (y = mx + c)
-   - Recognise gradient and intercept
-   - Solve equations using graphs
+    - Plot coordinates (x, y)
+    - Draw straight line graphs (y = mx + c)
+    - Recognise gradient and intercept
+    - Solve equations using graphs
+    - Graphs in practical situations
+    - Graphs of functions
+    - Differentiation and the gradient function (basic)
+
+7. **Functions**
+    - Basic function notation
+    - Domain and range
 
 ---
 
@@ -120,9 +131,10 @@
    - Unitary method (finding "1 part")
 
 2. **Advanced Percentages**
-   - Percentage change in real contexts
-   - Reverse percentage problems (e.g. "before discount")
-   - Simple interest & compound interest basics
+    - Percentage change in real contexts
+    - Reverse percentage problems (e.g. "before discount")
+    - Simple interest & compound interest basics
+    - Money and finance basics (e.g., calculating interest, budgets)
 
 3. **Compound Measures**
    - Speed = distance ÷ time
@@ -136,14 +148,16 @@
 
 ### Steps:
 1. **Units & Measurements**
-   - Metric conversions (cm ↔ m, ml ↔ l, etc.)
-   - Reading scales and measurements
-   - Simple imperial/metric conversions
+    - Metric conversions (cm ↔ m, ml ↔ l, etc.)
+    - Reading scales and measurements
+    - Simple imperial/metric conversions
+    - Time calculations (12-hour/24-hour, durations, timetables)
 
 2. **Angles**
-   - Angles on a line, around a point
-   - Angles in a triangle, quadrilateral
-   - Properties of parallel lines (alternate, corresponding, co-interior)
+    - Angles on a line, around a point
+    - Angles in a triangle, quadrilateral
+    - Properties of parallel lines (alternate, corresponding, co-interior)
+    - Geometrical vocabulary and construction
 
 3. **2D Shapes**
    - Name and properties of 2D shapes
@@ -154,15 +168,22 @@
    - Surface area and volume (cuboid, cylinder, sphere, cone basics)
 
 5. **Transformations**
-   - Reflection, rotation, translation
-   - Enlargement (whole-number scale factors)
+    - Reflection, rotation, translation
+    - Enlargement (whole-number scale factors)
+    - Similarity and congruence
+    - Symmetry
+    - Vectors (basic)
 
 6. **Pythagoras** (basic level for Foundation)
    - Find missing side in a right-angled triangle
 
 7. **Bearings**
-   - Simple 3-figure bearings
-   - Compass directions
+    - Simple 3-figure bearings
+    - Compass directions
+
+8. **Trigonometry** (Higher level)
+    - Basic trigonometry (sin, cos, tan)
+    - Further trigonometry (applications)
 
 ---
 
@@ -207,9 +228,11 @@
    - Expected frequency (probability × number of trials)
 
 3. **Combined Events** (Foundation level)
-   - Sample space diagrams
-   - Simple frequency trees
-   - Tree diagrams for two events
+    - Sample space diagrams
+    - Simple frequency trees
+    - Tree diagrams for two events
+    - Set notation and Venn diagrams (basic)
+    - Further probability (conditional, etc.)
 
 ---
 

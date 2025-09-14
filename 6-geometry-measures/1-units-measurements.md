@@ -53,3 +53,15 @@ Units help us measure length, mass, capacity, and time. Metric conversions use f
 8. Convert 2.25 kg to pounds (1 pound = 0.45 kg approximately)
 9. Convert 6 feet to metres (1 foot = 30 cm approximately)
 10. Convert 10 inches to millimetres (1 inch = 2.5 cm approximately)
+
+### Time Calculations
+1. Convert 2 hours 30 minutes to minutes
+2. Convert 150 minutes to hours and minutes
+3. Calculate the time difference between 3:45 PM and 5:20 PM
+4. Convert 24-hour time 14:30 to 12-hour time
+5. Convert 12-hour time 9:15 AM to 24-hour time
+6. Calculate the duration of a movie from 7:00 PM to 9:45 PM
+7. Find the time 2 hours 45 minutes after 10:30 AM
+8. Find the time 1 hour 20 minutes before 4:50 PM
+9. Convert 90 minutes to hours and minutes
+10. Calculate the total time for three events: 45 min, 1 hour 30 min, 20 min

@@ -52,3 +52,15 @@ Inequalities use symbols like >, <, ≥, ≤ to show relationships between expre
 8. Show f ≥ -3 on a number line
 9. Show g > 1 on a number line
 10. Show h ≤ -1 on a number line
+
+### Graphs of Inequalities and Regions
+1. Shade the region for y > 2x + 1
+2. Shade the region for y ≤ x - 3
+3. Shade the region for x + y < 5
+4. Shade the region for 2x - y ≥ 4
+5. Shade the region for y > -x + 2
+6. Shade the region for x ≤ 3
+7. Shade the region for y ≥ 0
+8. Shade the region for x + 2y < 6
+9. Shade the region for 3x + y ≤ 9
+10. Shade the region for y < 2x - 1

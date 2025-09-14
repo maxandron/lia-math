@@ -41,6 +41,18 @@ Powers show repeated multiplication (e.g., 3² = 3 × 3), while roots are the op
 9. Simplify: (5²)⁴
 10. Simplify: 8³ × 8²
 
+### Surds (Basic Simplification)
+1. Simplify: √4
+2. Simplify: √9
+3. Simplify: √16
+4. Simplify: √25
+5. Simplify: √36
+6. Simplify: √49
+7. Simplify: √64
+8. Simplify: √81
+9. Simplify: √100
+10. Simplify: √121
+
 ### Mixed Powers and Roots
 1. Calculate: 3² + 4²
 2. Calculate: √36 + √16
