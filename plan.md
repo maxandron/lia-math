@@ -41,17 +41,23 @@
 **Goal:** Master conversions and calculations with all number forms.
 
 ### Steps:
-1. **Fractions**
-   - Recognise and simplify fractions
+1. **Prime Factors, HCF & LCM**
+   - Prime factorisation
+   - Finding Highest Common Factor (HCF)
+   - Finding Lowest Common Multiple (LCM)
+   - Using HCF/LCM to solve problems
+
+2. **Fractions**
+   - Recognise and simplify fractions (using HCF)
    - Equivalent fractions
-   - Add/subtract fractions (common denominator → mixed)
+   - Add/subtract fractions (common denominator using LCM → mixed)
    - Multiply/divide fractions
 
-2. **Decimals**
+3. **Decimals**
    - Place value with decimals
    - Add, subtract, multiply, divide decimals
 
-3. **Percentages (Basic)**
+4. **Percentages (Basic)**
    - Fraction ↔ Decimal ↔ Percentage conversion
    - Finding % of an amount
    - Simple percentage increase/decrease
@@ -99,12 +105,17 @@
    - Solve equations with brackets
    - Word problems → equations
 
-5. **Inequalities** (Foundation basics)
+5. **Simultaneous Equations**
+   - Solve by substitution method
+   - Solve by elimination method
+   - Real-world problems involving two unknowns
+
+6. **Inequalities** (Foundation basics)
     - Solve simple linear inequalities
     - Show solutions on a number line
     - Graphs of inequalities and regions
 
-6. **Graphs**
+7. **Graphs**
     - Plot coordinates (x, y)
     - Draw straight line graphs (y = mx + c)
     - Recognise gradient and intercept
@@ -113,7 +124,7 @@
     - Graphs of functions
     - Differentiation and the gradient function (basic)
 
-7. **Functions**
+8. **Functions**
     - Basic function notation
     - Domain and range
 

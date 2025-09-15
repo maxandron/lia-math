@@ -21,12 +21,17 @@
 - Solve equations with brackets
 - Word problems → equations
 
-### 5. Inequalities (Foundation basics)
+### 5. Simultaneous Equations
+- Solve by substitution method
+- Solve by elimination method
+- Real-world problems involving two unknowns
+
+### 6. Inequalities (Foundation basics)
 - Solve simple linear inequalities
 - Show solutions on a number line
 - Graphs of inequalities and regions
 
-### 6. Graphs
+### 7. Graphs
 - Plot coordinates (x, y)
 - Draw straight line graphs (y = mx + c)
 - Recognise gradient and intercept
@@ -35,6 +40,6 @@
 - Graphs of functions
 - Differentiation and the gradient function (basic)
 
-### 7. Functions
+### 8. Functions
 - Basic function notation
 - Domain and range
