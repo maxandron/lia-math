@@ -319,7 +319,7 @@
     </div>
 
     <script>
-        let currentStreak = 0;
+        let currentStreak = parseInt(localStorage.getItem('roundingCurrentStreak')) || 0;
         let highScore = parseInt(localStorage.getItem('roundingHighScore')) || 0;
         let currentQuestion = {};
         let answerSubmitted = false;
@@ -380,6 +380,7 @@
 
             if (userAnswer === currentQuestion.correctAnswer) {
                 currentStreak++;
+                localStorage.setItem('roundingCurrentStreak', currentStreak.toString());
                 
             if (currentStreak > highScore) {
                 const oldHighScore = highScore;
@@ -400,6 +401,7 @@
                 celebrateSuccess();
             } else {
                 currentStreak = 0;
+                localStorage.setItem('roundingCurrentStreak', currentStreak.toString());
                 updateStreakDisplay();
                 
                 feedbackEl.className = 'feedback incorrect show';
@@ -563,6 +565,7 @@
             }
         });
 
+        initializeDisplay();
         generateQuestion();
     </script>
 </body>

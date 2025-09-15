@@ -486,7 +486,7 @@
     </div>
 
     <script>
-        let currentStreak = 0;
+        let currentStreak = parseInt(localStorage.getItem('multiplicationCurrentStreak')) || 0;
         let highScore = parseInt(localStorage.getItem('multiplicationHighScore')) || 0;
         let currentQuestion = {};
         let answerSubmitted = false;
@@ -532,6 +532,7 @@
 
             if (userAnswer === currentQuestion.correctAnswer) {
                 currentStreak++;
+                localStorage.setItem('multiplicationCurrentStreak', currentStreak.toString());
                 
                 if (currentStreak > highScore) {
                     const oldHighScore = highScore;
@@ -552,6 +553,7 @@
                 celebrateSuccess();
             } else {
                 currentStreak = 0;
+                localStorage.setItem('multiplicationCurrentStreak', currentStreak.toString());
                 updateStreakDisplay();
                 
                 feedbackEl.className = 'feedback incorrect show';
