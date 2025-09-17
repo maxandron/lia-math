@@ -303,12 +303,12 @@
 
         <div class="question-area">
             <div class="question" id="question">
-                Round <span class="number-highlight" id="numberToRound">123</span> to the nearest <span id="roundingTarget">ten</span>
+                Round <span class="number-highlight" id="numberToRound">123</span> to <span id="roundingTarget">ten</span>
             </div>
         </div>
 
         <div class="input-area">
-            <input type="number" class="answer-input" id="answerInput" placeholder="Your answer">
+            <input type="number" class="answer-input" id="answerInput" placeholder="Your answer" step="any">
             <button class="submit-btn" id="submitBtn" onclick="checkAnswer()">Submit Answer</button>
         </div>
 
@@ -326,23 +326,35 @@
 
         function generateQuestion() {
             const roundingTargets = [
-                { value: 10, text: "ten" },
-                { value: 100, text: "hundred" },
-                { value: 1000, text: "thousand" }
+                { value: 10, text: "ten", type: "whole" },
+                { value: 100, text: "hundred", type: "whole" },
+                { value: 1000, text: "thousand", type: "whole" },
+                { value: 1, text: "1 decimal place", type: "decimal" },
+                { value: 2, text: "2 decimal places", type: "decimal" },
+                { value: 3, text: "3 decimal places", type: "decimal" }
             ];
             
             const target = roundingTargets[Math.floor(Math.random() * roundingTargets.length)];
             
             let numberToRound;
-            if (target.value === 10) {
-                numberToRound = Math.floor(Math.random() * 9999) + 1;
-            } else if (target.value === 100) {
-                numberToRound = Math.floor(Math.random() * 99999) + 1;
+            let correctAnswer;
+            
+            if (target.type === "whole") {
+                if (target.value === 10) {
+                    numberToRound = Math.floor(Math.random() * 9999) + 1;
+                } else if (target.value === 100) {
+                    numberToRound = Math.floor(Math.random() * 99999) + 1;
+                } else {
+                    numberToRound = Math.floor(Math.random() * 999999) + 1;
+                }
+                correctAnswer = Math.round(numberToRound / target.value) * target.value;
             } else {
-                numberToRound = Math.floor(Math.random() * 999999) + 1;
+                // Generate decimal numbers with up to 5 decimal places
+                const baseNumber = Math.floor(Math.random() * 999) + 1;
+                const decimalPart = Math.floor(Math.random() * 100000) / 100000;
+                numberToRound = parseFloat((baseNumber + decimalPart).toFixed(5));
+                correctAnswer = parseFloat(numberToRound.toFixed(target.value));
             }
-
-            const correctAnswer = Math.round(numberToRound / target.value) * target.value;
 
             currentQuestion = {
                 number: numberToRound,
@@ -364,7 +376,8 @@
                 return;
             }
 
-            const userAnswer = parseInt(document.getElementById('answerInput').value);
+            const userAnswerStr = document.getElementById('answerInput').value;
+            const userAnswer = currentQuestion.target.type === "decimal" ? parseFloat(userAnswerStr) : parseInt(userAnswerStr);
             const feedbackEl = document.getElementById('feedback');
             const feedbackText = document.getElementById('feedbackText');
             const nextBtn = document.getElementById('nextBtn');
