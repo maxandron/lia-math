@@ -490,25 +490,89 @@
         let highScore = parseInt(localStorage.getItem('multiplicationHighScore')) || 0;
         let currentQuestion = {};
         let answerSubmitted = false;
+        let factPerformance = {};
+
+        function initializeFactTracking() {
+            const stored = localStorage.getItem('multiplicationFacts');
+            if (stored) {
+                factPerformance = JSON.parse(stored);
+            } else {
+                for (let i = 2; i <= 9; i++) {
+                    for (let j = 2; j <= 9; j++) {
+                        factPerformance[`${i}x${j}`] = {
+                            correct: 0,
+                            total: 0,
+                            lastSeen: 0,
+                            interval: 1
+                        };
+                    }
+                }
+            }
+        }
+
+        function getGlobalQuestionCount() {
+            return Object.values(factPerformance).reduce((sum, fact) => sum + fact.total, 0);
+        }
+
+        function selectQuestionWithSpacedRepetition() {
+            const globalCount = getGlobalQuestionCount();
+            const candidates = [];
+            
+            for (let i = 2; i <= 9; i++) {
+                for (let j = 2; j <= 9; j++) {
+                    const key = `${i}x${j}`;
+                    const fact = factPerformance[key];
+                    const questionsSince = globalCount - fact.lastSeen;
+                    
+                    if (questionsSince >= fact.interval || fact.total === 0 || 
+                        (fact.total > 0 && fact.correct / fact.total < 0.8)) {
+                        candidates.push({ a: i, b: j, key });
+                    }
+                }
+            }
+            
+            if (candidates.length === 0) {
+                const i = Math.floor(Math.random() * 8) + 2;
+                const j = Math.floor(Math.random() * 8) + 2;
+                return { a: i, b: j, key: `${i}x${j}` };
+            }
+            
+            return candidates[Math.floor(Math.random() * candidates.length)];
+        }
 
         function generateQuestion() {
-            const firstNumber = Math.floor(Math.random() * 8) + 2;
-            const secondNumber = Math.floor(Math.random() * 8) + 2;
-            const correctAnswer = firstNumber * secondNumber;
-
+            const selected = selectQuestionWithSpacedRepetition();
+            
             currentQuestion = {
-                firstNumber: firstNumber,
-                secondNumber: secondNumber,
-                correctAnswer: correctAnswer
+                firstNumber: selected.a,
+                secondNumber: selected.b,
+                correctAnswer: selected.a * selected.b,
+                factKey: selected.key
             };
 
-            document.getElementById('firstNumber').textContent = firstNumber;
-            document.getElementById('secondNumber').textContent = secondNumber;
+            document.getElementById('firstNumber').textContent = selected.a;
+            document.getElementById('secondNumber').textContent = selected.b;
             document.getElementById('answerInput').value = '';
             document.getElementById('answerInput').focus();
             
             answerSubmitted = false;
             hideFeedback();
+        }
+
+        function updateFactPerformance(isCorrect) {
+            const fact = factPerformance[currentQuestion.factKey];
+            const globalCount = getGlobalQuestionCount() + 1;
+            
+            fact.total++;
+            if (isCorrect) {
+                fact.correct++;
+                fact.interval = Math.min(fact.interval * 2, 50);
+            } else {
+                fact.interval = 1;
+            }
+            fact.lastSeen = globalCount;
+            
+            localStorage.setItem('multiplicationFacts', JSON.stringify(factPerformance));
         }
 
         function checkAnswer() {
@@ -530,7 +594,10 @@
             answerSubmitted = true;
             submitBtn.disabled = true;
 
-            if (userAnswer === currentQuestion.correctAnswer) {
+            const isCorrect = userAnswer === currentQuestion.correctAnswer;
+            updateFactPerformance(isCorrect);
+
+            if (isCorrect) {
                 currentStreak++;
                 localStorage.setItem('multiplicationCurrentStreak', currentStreak.toString());
                 
@@ -559,7 +626,6 @@
                 feedbackEl.className = 'feedback incorrect show';
                 feedbackText.innerHTML = `❌ Incorrect<br>The correct answer is: ${currentQuestion.correctAnswer}`;
                 
-                // Show the multiplication table button only on wrong answers
                 document.getElementById('showTableBtn').classList.remove('hidden');
             }
 
@@ -781,6 +847,7 @@
             }
         });
 
+        initializeFactTracking();
         initializeDisplay();
         generateQuestion();
     </script>
