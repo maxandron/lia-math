@@ -303,7 +303,7 @@
 
         <div class="question-area">
             <div class="question" id="question">
-                Round <span class="number-highlight" id="numberToRound">123</span> to <span id="roundingTarget">ten</span>
+                Round <span class="number-highlight" id="numberToRound">123</span> to <span id="roundingTarget">the nearest ten</span>
             </div>
         </div>
 
@@ -324,14 +324,26 @@
         let currentQuestion = {};
         let answerSubmitted = false;
 
+        function roundToSignificantFigures(num, sigFigs) {
+            if (num === 0) return 0;
+            const magnitude = Math.floor(Math.log10(Math.abs(num)));
+            const scale = Math.pow(10, magnitude - sigFigs + 1);
+            const rounded = Math.round(num / scale) * scale;
+            const precision = sigFigs - magnitude - 1;
+            return precision > 0 ? parseFloat(rounded.toFixed(precision)) : rounded;
+        }
+
         function generateQuestion() {
             const roundingTargets = [
-                { value: 10, text: "ten", type: "whole" },
-                { value: 100, text: "hundred", type: "whole" },
-                { value: 1000, text: "thousand", type: "whole" },
+                { value: 10, text: "the nearest ten", type: "whole" },
+                { value: 100, text: "the nearest hundred", type: "whole" },
+                { value: 1000, text: "the nearest thousand", type: "whole" },
                 { value: 1, text: "1 decimal place", type: "decimal" },
                 { value: 2, text: "2 decimal places", type: "decimal" },
-                { value: 3, text: "3 decimal places", type: "decimal" }
+                { value: 3, text: "3 decimal places", type: "decimal" },
+                { value: 1, text: "1 significant figure", type: "significant" },
+                { value: 2, text: "2 significant figures", type: "significant" },
+                { value: 3, text: "3 significant figures", type: "significant" }
             ];
             
             const target = roundingTargets[Math.floor(Math.random() * roundingTargets.length)];
@@ -348,12 +360,21 @@
                     numberToRound = Math.floor(Math.random() * 999999) + 1;
                 }
                 correctAnswer = Math.round(numberToRound / target.value) * target.value;
-            } else {
-                // Generate decimal numbers with up to 5 decimal places
+            } else if (target.type === "decimal") {
                 const baseNumber = Math.floor(Math.random() * 999) + 1;
                 const decimalPart = Math.floor(Math.random() * 100000) / 100000;
                 numberToRound = parseFloat((baseNumber + decimalPart).toFixed(5));
                 correctAnswer = parseFloat(numberToRound.toFixed(target.value));
+            } else {
+                const useDecimal = Math.random() < 0.5;
+                if (useDecimal) {
+                    const baseNumber = Math.floor(Math.random() * 999) + 1;
+                    const decimalPart = Math.floor(Math.random() * 100000) / 100000;
+                    numberToRound = parseFloat((baseNumber + decimalPart).toFixed(5));
+                } else {
+                    numberToRound = Math.floor(Math.random() * 999999) + 1;
+                }
+                correctAnswer = roundToSignificantFigures(numberToRound, target.value);
             }
 
             currentQuestion = {
@@ -377,7 +398,7 @@
             }
 
             const userAnswerStr = document.getElementById('answerInput').value;
-            const userAnswer = currentQuestion.target.type === "decimal" ? parseFloat(userAnswerStr) : parseInt(userAnswerStr);
+            const userAnswer = (currentQuestion.target.type === "decimal" || currentQuestion.target.type === "significant") ? parseFloat(userAnswerStr) : parseInt(userAnswerStr);
             const feedbackEl = document.getElementById('feedback');
             const feedbackText = document.getElementById('feedbackText');
             const nextBtn = document.getElementById('nextBtn');
@@ -391,20 +412,24 @@
             answerSubmitted = true;
             submitBtn.disabled = true;
 
-            if (userAnswer === currentQuestion.correctAnswer) {
+            const isCorrect = (currentQuestion.target.type === "decimal" || currentQuestion.target.type === "significant")
+                ? Math.abs(userAnswer - currentQuestion.correctAnswer) < 0.0000001
+                : userAnswer === currentQuestion.correctAnswer;
+
+            if (isCorrect) {
                 currentStreak++;
                 localStorage.setItem('roundingCurrentStreak', currentStreak.toString());
                 
-            if (currentStreak > highScore) {
-                const oldHighScore = highScore;
-                highScore = currentStreak;
-                localStorage.setItem('roundingHighScore', highScore.toString());
-                updateHighScoreDisplay();
-                
-                if (oldHighScore > 0) {
-                    showHighScoreMessage(`🏆 New High Score: ${highScore}!`);
+                if (currentStreak > highScore) {
+                    const oldHighScore = highScore;
+                    highScore = currentStreak;
+                    localStorage.setItem('roundingHighScore', highScore.toString());
+                    updateHighScoreDisplay();
+                    
+                    if (oldHighScore > 0) {
+                        showHighScoreMessage(`🏆 New High Score: ${highScore}!`);
+                    }
                 }
-            }
                 
                 updateStreakDisplay();
                 
@@ -552,8 +577,8 @@
         }
 
         function nextQuestion() {
-        initializeDisplay();
-        generateQuestion();
+            initializeDisplay();
+            generateQuestion();
             document.getElementById('submitBtn').disabled = false;
         }
 
